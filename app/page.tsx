@@ -1,65 +1,397 @@
 import Image from "next/image";
+import Link from "next/link";
+
+const features = [
+  {
+    title: "Catat Hutang",
+    description:
+      "Simpan setiap hutang dengan detail nominal, tanggal jatuh tempo, dan catatan. Tidak ada lagi hutang yang terlupakan.",
+    image: "/images/catat_hutang.webp",
+    width: 830,
+    height: 1600,
+    accent: "bg-accent-pink/20",
+  },
+  {
+    title: "Catat Piutang",
+    description:
+      "Pantau siapa saja yang berhutang kepada Anda. Tagih tepat waktu dengan catatan jatuh tempo yang jelas.",
+    image: "/images/catat_piutang.webp",
+    width: 819,
+    height: 1600,
+    accent: "bg-secondary/30",
+  },
+  {
+    title: "Daftar Kontak",
+    description:
+      "Kelola semua kontak hutang piutang dalam satu tempat. Lihat riwayat transaksi per orang dengan mudah.",
+    image: "/images/daftar_kontak.webp",
+    width: 1220,
+    height: 2618,
+    accent: "bg-accent-purple/20",
+  },
+];
+
+const benefits = [
+  {
+    title: "Ringkasan Otomatis",
+    description:
+      "Dashboard menampilkan total hutang dan piutang Anda secara real-time.",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        className="h-6 w-6"
+      >
+        <rect x="3" y="3" width="7" height="9" rx="1.5" />
+        <rect x="14" y="3" width="7" height="5" rx="1.5" />
+        <rect x="14" y="12" width="7" height="9" rx="1.5" />
+        <rect x="3" y="16" width="7" height="5" rx="1.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "Gratis Digunakan",
+    description:
+      "Semua fitur inti dapat dipakai tanpa biaya. Cukup unduh dan mulai mencatat.",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        className="h-6 w-6"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v10M9.5 9.5h3.75a1.75 1.75 0 1 1 0 3.5h-2.5a1.75 1.75 0 1 0 0 3.5H14.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "Data Aman",
+    description:
+      "Catatan keuangan Anda tersimpan aman dan hanya bisa diakses oleh Anda.",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        className="h-6 w-6"
+      >
+        <path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z" />
+        <path d="M9.5 12l2 2 3.5-3.5" />
+      </svg>
+    ),
+  },
+  {
+    title: "Ringan & Cepat",
+    description:
+      "Aplikasi ringan yang dirancang agar pencatatan selesai dalam hitungan detik.",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        className="h-6 w-6"
+      >
+        <path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12L13 2z" />
+      </svg>
+    ),
+  },
+];
+
+const steps = [
+  {
+    number: "1",
+    title: "Tambah Kontak",
+    description:
+      "Masukkan nama orang yang berhutang atau memberi hutang kepada Anda.",
+  },
+  {
+    number: "2",
+    title: "Catat Transaksi",
+    description: "Isi nominal, tanggal, dan keterangan hutang atau piutang.",
+  },
+  {
+    number: "3",
+    title: "Pantau & Lunasi",
+    description:
+      "Lihat ringkasan di dashboard dan tandai lunas saat pembayaran selesai.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <div className="flex flex-1 flex-col bg-white text-text-primary">
+      {/* Header */}
+      <header className="sticky top-0 z-50 border-b border-border-soft bg-white/90 backdrop-blur">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+          <Link href="/" className="flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary font-bold">
+              J
+            </span>
+            <span className="text-lg font-bold tracking-tight">JejakBon</span>
+          </Link>
+          <nav className="hidden items-center gap-8 text-sm font-medium text-text-secondary md:flex">
+            <a href="#fitur" className="transition-colors hover:text-text-primary">
+              Fitur
+            </a>
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#cara-kerja"
+              className="transition-colors hover:text-text-primary"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Cara Kerja
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#keunggulan"
+              className="transition-colors hover:text-text-primary"
             >
-              Learning
-            </a>{" "}
-            center.
+              Keunggulan
+            </a>
+          </nav>
+          <a
+            href="#unduh"
+            className="rounded-full bg-text-primary px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-85"
+          >
+            Unduh Gratis
+          </a>
+        </div>
+      </header>
+
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-24 right-[-10%] h-80 w-80 rounded-full bg-primary/40 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-40 left-[-10%] h-72 w-72 rounded-full bg-secondary/30 blur-3xl"
+          />
+          <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 pt-16 pb-12 sm:px-6 md:grid-cols-2 md:pt-24 md:pb-20">
+            <div className="relative text-center md:text-left">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border-soft bg-surface px-4 py-1.5 text-xs font-semibold text-text-secondary">
+                <span className="h-2 w-2 rounded-full bg-success" />
+                Aplikasi Pencatat Hutang Piutang
+              </span>
+              <h1 className="mt-6 text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
+                Catat Hutang &amp; Piutang,{" "}
+                <span className="relative inline-block">
+                  Tanpa Ribet
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-1 -z-10 h-3 rounded-sm bg-primary"
+                  />
+                </span>
+              </h1>
+              <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-text-secondary sm:text-lg md:mx-0">
+                JejakBon membantu Anda mencatat, memantau, dan melunasi hutang
+                piutang dengan rapi — agar uang dan hubungan baik tetap terjaga.
+              </p>
+              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center md:justify-start">
+                <a
+                  href="#unduh"
+                  className="w-full rounded-full bg-text-primary px-7 py-3.5 text-center text-sm font-semibold text-white transition-opacity hover:opacity-85 sm:w-auto"
+                >
+                  Unduh Sekarang
+                </a>
+                <a
+                  href="#fitur"
+                  className="w-full rounded-full border border-border-soft bg-white px-7 py-3.5 text-center text-sm font-semibold text-text-primary transition-colors hover:bg-surface sm:w-auto"
+                >
+                  Lihat Fitur
+                </a>
+              </div>
+              <p className="mt-4 text-xs text-text-disabled">
+                Gratis · Mudah digunakan · Tanpa ribet
+              </p>
+            </div>
+            <div className="relative flex justify-center">
+              <div
+                aria-hidden
+                className="absolute top-1/2 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/50 blur-2xl sm:h-96 sm:w-96"
+              />
+              <div className="w-56 overflow-hidden rounded-[2rem] border-4 border-text-primary/90 shadow-2xl sm:w-64">
+                <Image
+                  src="/images/dashboard.webp"
+                  alt="Tampilan dashboard aplikasi JejakBon"
+                  width={1220}
+                  height={2616}
+                  priority
+                  className="h-auto w-full"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Fitur */}
+        <section id="fitur" className="bg-surface py-16 md:py-24">
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Semua yang Anda Butuhkan
+              </h2>
+              <p className="mt-4 text-text-secondary">
+                Fitur sederhana namun lengkap untuk mengelola hutang piutang
+                sehari-hari.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {features.map((feature) => (
+                <div
+                  key={feature.title}
+                  className="flex flex-col overflow-hidden rounded-3xl border border-border-soft bg-white transition-shadow hover:shadow-lg"
+                >
+                  <div
+                    className={`flex justify-center px-8 pt-8 ${feature.accent}`}
+                  >
+                    <div className="w-40 overflow-hidden rounded-t-2xl border-4 border-b-0 border-text-primary/90 shadow-lg">
+                      <Image
+                        src={feature.image}
+                        alt={`Fitur ${feature.title} JejakBon`}
+                        width={feature.width}
+                        height={feature.height}
+                        className="h-52 w-full object-cover object-top"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-lg font-bold">{feature.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Cara Kerja */}
+        <section id="cara-kerja" className="py-16 md:py-24">
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Mulai dalam 3 Langkah
+              </h2>
+              <p className="mt-4 text-text-secondary">
+                Tidak perlu belajar lama. Buka aplikasi dan langsung catat.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {steps.map((step) => (
+                <div
+                  key={step.number}
+                  className="rounded-3xl border border-border-soft bg-white p-8 text-center"
+                >
+                  <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-bold">
+                    {step.number}
+                  </span>
+                  <h3 className="mt-5 text-lg font-bold">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Keunggulan */}
+        <section id="keunggulan" className="bg-surface py-16 md:py-24">
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Kenapa JejakBon?
+              </h2>
+            </div>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {benefits.map((benefit) => (
+                <div
+                  key={benefit.title}
+                  className="rounded-3xl border border-border-soft bg-white p-6"
+                >
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-text-primary">
+                    {benefit.icon}
+                  </span>
+                  <h3 className="mt-4 font-bold">{benefit.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section id="unduh" className="py-16 md:py-24">
+          <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+            <div className="relative overflow-hidden rounded-[2.5rem] bg-text-primary px-6 py-14 text-center sm:px-12 md:py-20">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-primary/30 blur-3xl"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-secondary/20 blur-3xl"
+              />
+              <h2 className="relative text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Jangan Biarkan Hutang Terlupakan
+              </h2>
+              <p className="relative mx-auto mt-4 max-w-xl text-white/70">
+                Unduh JejakBon sekarang dan rasakan tenangnya punya catatan
+                keuangan yang rapi.
+              </p>
+              <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <a
+                  href="#"
+                  className="w-full rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-text-primary transition-opacity hover:opacity-90 sm:w-auto"
+                >
+                  Unduh di Google Play
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-border-soft bg-white">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-4 py-8 text-center sm:px-6 md:flex-row md:justify-between md:text-left">
+          <div className="flex items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-bold">
+              J
+            </span>
+            <span className="font-bold">JejakBon</span>
+          </div>
+          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-text-secondary">
+            <a href="#fitur" className="transition-colors hover:text-text-primary">
+              Fitur
+            </a>
+            <a
+              href="#cara-kerja"
+              className="transition-colors hover:text-text-primary"
+            >
+              Cara Kerja
+            </a>
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-text-primary"
+            >
+              Kebijakan Privasi
+            </Link>
+          </nav>
+          <p className="text-xs text-text-disabled">
+            © 2026 JejakBon. Hak cipta dilindungi.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </footer>
     </div>
   );
 }
