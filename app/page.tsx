@@ -156,7 +156,13 @@ export default function Home() {
             href="#unduh"
             className="rounded-full bg-text-primary px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-85"
           >
-            Unduh Gratis
+            Unduh Play Store
+          </a>
+          <a
+            href="#unduh"
+            className="rounded-full bg-text-primary px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-85"
+          >
+            Unduh App Store
           </a>
         </div>
       </header>
