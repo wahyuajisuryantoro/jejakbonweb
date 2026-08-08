@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { site } from "./components/site-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: "JejakBon — Catat Hutang Piutang Tanpa Ribet",
   description:
-    "JejakBon adalah aplikasi pencatat hutang piutang yang membantu Anda mencatat, memantau, dan melunasi hutang piutang dengan rapi. Gratis dan mudah digunakan.",
+    "JejakBon adalah aplikasi pencatat hutang piutang yang membantu Anda mencatat cicilan, memantau jatuh tempo, dan mengirim tagihan dengan rapi. Unduh gratis, buka semua fitur dengan sekali bayar.",
 };
 
 export default function RootLayout({

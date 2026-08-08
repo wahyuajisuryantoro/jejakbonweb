@@ -1,5 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
+import { AppStoreBadge, PlayStoreBadge } from "./components/StoreBadges";
 
 const features = [
   {
@@ -52,9 +54,9 @@ const benefits = [
     ),
   },
   {
-    title: "Gratis Digunakan",
+    title: "Sekali Bayar",
     description:
-      "Semua fitur inti dapat dipakai tanpa biaya. Cukup unduh dan mulai mencatat.",
+      "Coba gratis lebih dulu. Buka semua fitur dengan sekali bayar, tanpa langganan bulanan.",
     icon: (
       <svg
         viewBox="0 0 24 24"
@@ -126,46 +128,7 @@ const steps = [
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col bg-white text-text-primary">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border-soft bg-white/90 backdrop-blur">
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary font-bold">
-              J
-            </span>
-            <span className="text-lg font-bold tracking-tight">JejakBon</span>
-          </Link>
-          <nav className="hidden items-center gap-8 text-sm font-medium text-text-secondary md:flex">
-            <a href="#fitur" className="transition-colors hover:text-text-primary">
-              Fitur
-            </a>
-            <a
-              href="#cara-kerja"
-              className="transition-colors hover:text-text-primary"
-            >
-              Cara Kerja
-            </a>
-            <a
-              href="#keunggulan"
-              className="transition-colors hover:text-text-primary"
-            >
-              Keunggulan
-            </a>
-          </nav>
-          <a
-            href="#unduh"
-            className="rounded-full bg-text-primary px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-85"
-          >
-            Unduh Play Store
-          </a>
-          <a
-            href="#unduh"
-            className="rounded-full bg-text-primary px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-85"
-          >
-            Unduh App Store
-          </a>
-        </div>
-      </header>
+      <SiteHeader cta={{ label: "Unduh Sekarang", href: "#unduh" }} />
 
       <main className="flex-1">
         {/* Hero */}
@@ -213,7 +176,7 @@ export default function Home() {
                 </a>
               </div>
               <p className="mt-4 text-xs text-text-disabled">
-                Gratis · Mudah digunakan · Tanpa ribet
+                Unduh gratis · Tanpa akun · Tanpa langganan
               </p>
             </div>
             <div className="relative flex justify-center">
@@ -355,49 +318,15 @@ export default function Home() {
                 keuangan yang rapi.
               </p>
               <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a
-                  href="#"
-                  className="w-full rounded-full bg-primary px-8 py-3.5 text-sm font-semibold text-text-primary transition-opacity hover:opacity-90 sm:w-auto"
-                >
-                  Unduh di Google Play
-                </a>
+                <AppStoreBadge />
+                <PlayStoreBadge />
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border-soft bg-white">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-4 py-8 text-center sm:px-6 md:flex-row md:justify-between md:text-left">
-          <div className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-bold">
-              J
-            </span>
-            <span className="font-bold">JejakBon</span>
-          </div>
-          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-text-secondary">
-            <a href="#fitur" className="transition-colors hover:text-text-primary">
-              Fitur
-            </a>
-            <a
-              href="#cara-kerja"
-              className="transition-colors hover:text-text-primary"
-            >
-              Cara Kerja
-            </a>
-            <Link
-              href="/privacy"
-              className="transition-colors hover:text-text-primary"
-            >
-              Kebijakan Privasi
-            </Link>
-          </nav>
-          <p className="text-xs text-text-disabled">
-            © 2026 JejakBon. Hak cipta dilindungi.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

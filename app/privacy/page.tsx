@@ -1,136 +1,322 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import LegalDocument, {
+  type LegalBlock,
+  type LegalSection,
+} from "../components/LegalDocument";
+import { site } from "../components/site-config";
 
 export const metadata: Metadata = {
   title: "Kebijakan Privasi — JejakBon",
   description:
-    "Kebijakan privasi aplikasi JejakBon, pencatat hutang piutang.",
+    "Kebijakan Privasi JejakBon: bagaimana Serein Indonesia mengumpulkan, menggunakan, menyimpan, dan melindungi data Anda pada aplikasi pencatat hutang piutang JejakBon.",
+  alternates: { canonical: "/privacy" },
 };
 
-const sections = [
+const intro: LegalBlock[] = [
   {
-    title: "1. Informasi yang Kami Kumpulkan",
-    content: [
-      "JejakBon dirancang dengan prinsip privasi. Data pencatatan hutang piutang, daftar kontak, nominal, dan catatan transaksi yang Anda masukkan disimpan secara lokal di perangkat Anda.",
-      "Kami tidak mewajibkan pendaftaran akun untuk menggunakan fitur inti aplikasi. Informasi kontak yang Anda tambahkan hanya digunakan untuk keperluan pencatatan di dalam aplikasi.",
+    kind: "text",
+    value: `${site.developer} ("kami" atau "milik kami") menghargai privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat menggunakan aplikasi ${site.name}.`,
+  },
+  {
+    kind: "text",
+    value: `Dengan menggunakan ${site.name}, Anda menyetujui pengumpulan dan penggunaan informasi sesuai dengan kebijakan ini.`,
+  },
+  {
+    kind: "note",
+    value: `Ringkasnya: JejakBon bekerja sepenuhnya di perangkat Anda. Kami tidak memiliki server yang menyimpan catatan keuangan Anda, tidak mewajibkan pendaftaran akun, dan tidak dapat membaca isi catatan Anda dari jarak jauh.`,
+  },
+];
+
+const sections: LegalSection[] = [
+  {
+    number: "1",
+    title: "Informasi yang Kami Kumpulkan",
+    blocks: [
+      { kind: "subtitle", value: "1.1 Informasi yang Anda Masukkan Sendiri" },
+      {
+        kind: "text",
+        value:
+          "Seluruh informasi berikut Anda masukkan secara mandiri dan disimpan di dalam basis data lokal pada perangkat Anda:",
+      },
+      {
+        kind: "list",
+        value: [
+          "Nama profil yang Anda isi saat pertama kali membuka aplikasi",
+          "Data kontak hutang piutang: nama, nomor telepon, email, alamat, catatan, dan foto kontak bila Anda menambahkannya",
+          "Kontak darurat yang Anda catat pada suatu kontak: nama, nomor telepon, dan hubungan",
+          "Data transaksi: jenis (hutang atau piutang), judul, keterangan, nominal, metode pembayaran (tempo atau cicilan), tanggal jatuh tempo, dan status pelunasan",
+          "Data cicilan dan riwayat pembayaran, termasuk nominal serta tanggal setiap pembayaran",
+          "Foto bukti transaksi yang Anda ambil melalui kamera atau pilih dari galeri",
+          "Data surat tagihan atau invoice yang Anda hasilkan dari aplikasi",
+        ],
+      },
+      {
+        kind: "note",
+        value:
+          "JejakBon tidak mewajibkan pendaftaran akun, alamat email, kata sandi, maupun nomor telepon Anda untuk dapat digunakan. Data di atas tidak dikirimkan ke server kami.",
+      },
+      { kind: "subtitle", value: "1.2 Informasi yang Diproses Pihak Ketiga" },
+      {
+        kind: "text",
+        value:
+          "Untuk memproses pembelian lisensi premium, aplikasi menggunakan layanan RevenueCat yang bekerja sama dengan Apple App Store dan Google Play Store. Layanan ini dapat memproses:",
+      },
+      {
+        kind: "list",
+        value: [
+          "Pengenal pengguna anonim yang dibuat otomatis oleh sistem pembelian (bukan nama atau email Anda)",
+          "Riwayat pembelian dan status lisensi pada perangkat Anda",
+          "Informasi teknis perangkat yang diperlukan untuk memvalidasi pembelian, seperti jenis perangkat dan versi sistem operasi",
+        ],
+      },
+      {
+        kind: "text",
+        value:
+          "Data pembelian ini terpisah sepenuhnya dari catatan hutang piutang Anda. Kami tidak menerima nomor kartu, rekening, atau data pembayaran Anda — seluruh pembayaran diproses langsung oleh Apple atau Google.",
+      },
+      { kind: "subtitle", value: "1.3 Informasi yang Tidak Kami Kumpulkan" },
+      {
+        kind: "list",
+        value: [
+          "Kami tidak memasang layanan analitik perilaku maupun pelacak iklan pihak ketiga di dalam aplikasi",
+          "Kami tidak mengumpulkan lokasi perangkat Anda",
+          "Kami tidak membaca daftar kontak telepon Anda; setiap kontak Anda masukkan sendiri secara manual",
+          "Kami tidak mengunggah catatan keuangan, foto bukti, maupun berkas cadangan Anda ke server kami",
+        ],
+      },
     ],
   },
   {
-    title: "2. Penggunaan Informasi",
-    content: [
-      "Data yang Anda masukkan digunakan semata-mata untuk menampilkan catatan hutang piutang, ringkasan dashboard, dan riwayat transaksi di dalam aplikasi.",
-      "Kami tidak menjual, menyewakan, atau membagikan data pribadi Anda kepada pihak ketiga untuk tujuan pemasaran.",
+    number: "2",
+    title: "Bagaimana Kami Menggunakan Informasi Anda",
+    blocks: [
+      {
+        kind: "text",
+        value:
+          "Informasi yang Anda masukkan diproses di dalam perangkat Anda untuk:",
+      },
+      {
+        kind: "list",
+        value: [
+          "Menampilkan dan mengelola catatan hutang dan piutang Anda",
+          "Menghitung sisa tagihan, status pelunasan, dan jadwal cicilan secara otomatis",
+          "Menampilkan ringkasan serta laporan keuangan yang dapat difilter per kontak dan periode",
+          "Mengirimkan pengingat lokal menjelang tanggal jatuh tempo yang Anda tetapkan",
+          "Menghasilkan surat tagihan dalam bentuk PDF untuk Anda cetak atau bagikan",
+          "Membuat dan memulihkan berkas cadangan atas permintaan Anda",
+          "Memverifikasi status lisensi premium Anda",
+        ],
+      },
+      {
+        kind: "text",
+        value:
+          "Kami tidak menggunakan catatan keuangan Anda untuk iklan bertarget, penilaian kredit, penjualan data, atau tujuan pemasaran apa pun.",
+      },
     ],
   },
   {
-    title: "3. Penyimpanan dan Keamanan Data",
-    content: [
-      "Data tersimpan di perangkat Anda. Kami menerapkan langkah-langkah wajar untuk melindungi data dari akses yang tidak sah.",
-      "Anda bertanggung jawab menjaga keamanan perangkat Anda, termasuk penggunaan kunci layar atau proteksi lainnya.",
+    number: "3",
+    title: "Penyimpanan dan Keamanan Data",
+    blocks: [
+      { kind: "subtitle", value: "3.1 Penyimpanan Data" },
+      {
+        kind: "text",
+        value:
+          "Seluruh catatan Anda disimpan dalam basis data lokal di dalam area penyimpanan aplikasi pada perangkat Anda. Foto bukti transaksi juga disimpan secara lokal. Kami tidak menyimpan salinan data tersebut di server mana pun.",
+      },
+      {
+        kind: "text",
+        value:
+          "Karena data bersifat lokal, data tidak berpindah dengan sendirinya ketika Anda mengganti perangkat atau memasang ulang aplikasi. Gunakan fitur Backup & Restore untuk memindahkan data Anda secara mandiri.",
+      },
+      { kind: "subtitle", value: "3.2 Berkas Cadangan" },
+      {
+        kind: "text",
+        value:
+          "Fitur cadangan menghasilkan satu berkas yang berisi salinan catatan dan foto bukti Anda. Berkas ini sepenuhnya berada dalam kendali Anda — Anda yang menentukan di mana ia disimpan dan kepada siapa ia dibagikan. Kami tidak menerima salinannya.",
+      },
+      {
+        kind: "note",
+        value:
+          "Berkas cadangan tidak dienkripsi dengan kata sandi. Perlakukan berkas tersebut seperti dokumen keuangan pribadi: simpan di tempat yang aman dan jangan bagikan kepada pihak yang tidak Anda percayai.",
+      },
+      { kind: "subtitle", value: "3.3 Keamanan Data" },
+      {
+        kind: "text",
+        value:
+          "Kami menerapkan langkah-langkah yang wajar untuk melindungi data Anda, termasuk:",
+      },
+      {
+        kind: "list",
+        value: [
+          "Penyimpanan pada area aplikasi yang diisolasi oleh sistem operasi iOS dan Android, sehingga tidak dapat diakses aplikasi lain",
+          "Tidak adanya pengiriman catatan keuangan ke jaringan, sehingga tidak ada risiko penyadapan saat transmisi",
+          "Status lisensi yang tidak ikut tertimpa saat Anda memulihkan berkas cadangan lama",
+        ],
+      },
+      {
+        kind: "text",
+        value:
+          "Karena data berada di perangkat Anda, keamanan perangkat adalah lapisan perlindungan utama. Kami sangat menyarankan Anda mengaktifkan kunci layar, Face ID, atau Touch ID.",
+      },
+      {
+        kind: "text",
+        value:
+          "Namun, tidak ada metode penyimpanan elektronik yang 100% aman. Kami tidak dapat menjamin keamanan absolut data Anda, terutama apabila perangkat Anda hilang, diakses orang lain, atau dimodifikasi secara tidak resmi.",
+      },
     ],
   },
   {
-    title: "4. Izin Aplikasi",
-    content: [
-      "JejakBon dapat meminta izin tertentu pada perangkat Anda (misalnya akses kontak) hanya jika diperlukan untuk fitur yang Anda gunakan. Izin dapat dicabut kapan saja melalui pengaturan perangkat.",
+    number: "4",
+    title: "Izin Perangkat yang Kami Minta",
+    blocks: [
+      {
+        kind: "text",
+        value:
+          "Aplikasi hanya meminta izin yang diperlukan untuk fitur yang Anda gunakan. Seluruh izin dapat Anda tolak atau cabut kapan saja melalui Pengaturan perangkat.",
+      },
+      {
+        kind: "list",
+        value: [
+          "Kamera — untuk mengambil foto bukti transaksi",
+          "Galeri atau Foto — untuk memilih dan menyimpan foto bukti transaksi",
+          "Notifikasi — untuk menampilkan pengingat jatuh tempo di perangkat Anda",
+          "Alarm terjadwal — agar pengingat tetap muncul tepat waktu, termasuk setelah perangkat dinyalakan ulang",
+          "Penyimpanan berkas — untuk menyimpan dan membaca berkas cadangan serta menyimpan surat tagihan PDF",
+          "Internet — hanya digunakan untuk memvalidasi pembelian lisensi premium",
+        ],
+      },
+      {
+        kind: "note",
+        value:
+          "Menolak izin kamera, galeri, atau notifikasi tidak menghalangi Anda menggunakan fitur pencatatan utama.",
+      },
     ],
   },
   {
-    title: "5. Data Anak-Anak",
-    content: [
-      "JejakBon tidak ditujukan untuk anak di bawah usia 13 tahun dan kami tidak dengan sengaja mengumpulkan data pribadi dari anak-anak.",
+    number: "5",
+    title: "Berbagi Informasi dengan Pihak Ketiga",
+    blocks: [
+      {
+        kind: "text",
+        value:
+          "Kami tidak menjual atau menyewakan informasi pribadi Anda kepada pihak ketiga. Informasi hanya dapat terlibat pihak ketiga dalam situasi berikut:",
+      },
+      {
+        kind: "list",
+        value: [
+          "Pemroses pembelian: RevenueCat, Apple App Store, dan Google Play Store memproses data pembelian lisensi sesuai kebijakan privasi masing-masing",
+          "Berbagi atas inisiatif Anda: ketika Anda membagikan surat tagihan, laporan, atau berkas cadangan melalui WhatsApp, email, atau aplikasi lain, data tersebut tunduk pada kebijakan aplikasi tujuan",
+          "Kepatuhan hukum: apabila diwajibkan oleh hukum yang berlaku atau untuk melindungi hak kami",
+          "Dengan persetujuan Anda: dalam hal lain dengan izin eksplisit dari Anda",
+        ],
+      },
+      {
+        kind: "note",
+        value:
+          "Perlu dicatat bahwa karena catatan Anda tidak pernah dikirim ke server kami, kami secara teknis tidak memiliki akses ke isi catatan Anda dan karenanya tidak dapat menyerahkannya kepada pihak mana pun.",
+      },
     ],
   },
   {
-    title: "6. Penghapusan Data",
-    content: [
-      "Anda dapat menghapus catatan kapan saja melalui aplikasi. Menghapus aplikasi dari perangkat akan menghapus seluruh data yang tersimpan secara lokal.",
+    number: "6",
+    title: "Hak Anda",
+    blocks: [
+      { kind: "text", value: "Anda memiliki hak untuk:" },
+      {
+        kind: "list",
+        value: [
+          "Mengakses data: melihat seluruh data Anda kapan saja langsung dari dalam aplikasi",
+          "Memperbaiki data: mengubah atau memperbarui catatan, kontak, dan transaksi yang tidak akurat",
+          "Menghapus data: menghapus catatan tertentu, atau menghapus seluruh data dengan mencopot pemasangan aplikasi",
+          "Portabilitas data: mengekspor data Anda melalui fitur Backup & Restore serta laporan yang dapat dibagikan",
+          "Membatasi pemrosesan: menolak atau mencabut izin perangkat melalui Pengaturan",
+        ],
+      },
+      {
+        kind: "text",
+        value:
+          "Karena seluruh data berada di perangkat Anda, hak-hak ini dapat Anda jalankan sendiri secara langsung tanpa perlu mengajukan permintaan kepada kami. Untuk pertanyaan lebih lanjut, silakan hubungi kami melalui informasi kontak di bagian akhir dokumen ini.",
+      },
     ],
   },
   {
-    title: "7. Perubahan Kebijakan",
-    content: [
-      "Kebijakan privasi ini dapat diperbarui dari waktu ke waktu. Perubahan akan diumumkan melalui halaman ini dengan tanggal pembaruan terbaru.",
+    number: "7",
+    title: "Retensi Data",
+    blocks: [
+      {
+        kind: "text",
+        value:
+          "Data Anda tersimpan selama aplikasi masih terpasang di perangkat Anda. Kami tidak menetapkan batas waktu penyimpanan karena kami tidak menyimpan data tersebut.",
+      },
+      {
+        kind: "list",
+        value: [
+          "Menghapus satu catatan atau kontak dari aplikasi bersifat permanen dan tidak dapat dibatalkan",
+          "Mencopot pemasangan aplikasi akan menghapus seluruh basis data lokal beserta foto bukti yang tersimpan di dalamnya",
+          "Berkas cadangan yang sudah Anda simpan di luar aplikasi tidak ikut terhapus; Anda perlu menghapusnya sendiri",
+          "Korespondensi email dukungan yang Anda kirimkan kepada kami disimpan selama diperlukan untuk menyelesaikan permintaan Anda, dan paling lama 12 bulan",
+        ],
+      },
     ],
   },
   {
-    title: "8. Hubungi Kami",
-    content: [
-      "Jika Anda memiliki pertanyaan mengenai kebijakan privasi ini, silakan hubungi kami melalui email: ajiwahyu334@gmail.com.",
+    number: "8",
+    title: "Privasi Anak-anak",
+    blocks: [
+      {
+        kind: "text",
+        value: `${site.name} tidak ditujukan untuk anak di bawah usia 13 tahun, dan kami tidak dengan sengaja mengumpulkan informasi pribadi dari anak-anak.`,
+      },
+      {
+        kind: "text",
+        value:
+          "Karena aplikasi tidak mengirimkan data ke server kami, kami tidak memiliki data anak dalam penguasaan kami. Apabila Anda orang tua atau wali dan menemukan anak Anda menggunakan aplikasi ini, Anda dapat menghapus seluruh datanya langsung dari perangkat.",
+      },
+    ],
+  },
+  {
+    number: "9",
+    title: "Layanan dan Platform Pihak Ketiga",
+    blocks: [
+      {
+        kind: "text",
+        value:
+          "Aplikasi didistribusikan melalui Apple App Store dan Google Play Store. Kedua platform tersebut memiliki kebijakan privasi masing-masing yang berlaku atas aktivitas pengunduhan dan pembelian Anda, dan berada di luar kendali kami.",
+      },
+      {
+        kind: "text",
+        value:
+          "Hal yang sama berlaku untuk aplikasi tujuan ketika Anda membagikan surat tagihan atau laporan, misalnya WhatsApp atau layanan email yang Anda gunakan.",
+      },
+    ],
+  },
+  {
+    number: "10",
+    title: "Perubahan Kebijakan Privasi",
+    blocks: [
+      {
+        kind: "text",
+        value:
+          "Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Kami akan memberi tahu Anda tentang perubahan dengan memposting kebijakan baru di halaman ini dan memperbarui tanggal “Terakhir diperbarui”.",
+      },
+      {
+        kind: "text",
+        value:
+          "Anda disarankan untuk meninjau Kebijakan Privasi ini secara berkala. Penggunaan berkelanjutan atas aplikasi setelah perubahan diposting akan dianggap sebagai penerimaan Anda terhadap perubahan tersebut.",
+      },
     ],
   },
 ];
 
 export default function PrivacyPage() {
   return (
-    <div className="flex flex-1 flex-col bg-white text-text-primary">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border-soft bg-white/90 backdrop-blur">
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary font-bold">
-              J
-            </span>
-            <span className="text-lg font-bold tracking-tight">JejakBon</span>
-          </Link>
-          <Link
-            href="/"
-            className="rounded-full border border-border-soft px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-surface"
-          >
-            Kembali ke Beranda
-          </Link>
-        </div>
-      </header>
-
-      <main className="flex-1">
-        <section className="bg-surface py-14 md:py-20">
-          <div className="mx-auto w-full max-w-3xl px-4 text-center sm:px-6">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Kebijakan Privasi
-            </h1>
-            <p className="mt-4 text-text-secondary">
-              Privasi Anda penting bagi kami. Halaman ini menjelaskan bagaimana
-              JejakBon menangani data Anda.
-            </p>
-            <p className="mt-3 text-xs text-text-disabled">
-              Terakhir diperbarui: 4 Juli 2026
-            </p>
-          </div>
-        </section>
-
-        <section className="py-12 md:py-16">
-          <div className="mx-auto w-full max-w-3xl space-y-10 px-4 sm:px-6">
-            {sections.map((section) => (
-              <div key={section.title}>
-                <h2 className="text-xl font-bold">{section.title}</h2>
-                {section.content.map((paragraph, i) => (
-                  <p
-                    key={i}
-                    className="mt-3 leading-relaxed text-text-secondary"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-border-soft bg-white">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-4 py-8 text-center sm:px-6 md:flex-row md:justify-between md:text-left">
-          <div className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-bold">
-              J
-            </span>
-            <span className="font-bold">JejakBon</span>
-          </div>
-          <p className="text-xs text-text-disabled">
-            © 2026 JejakBon. Hak cipta dilindungi.
-          </p>
-        </div>
-      </footer>
-    </div>
+    <LegalDocument
+      title={`Kebijakan Privasi ${site.name}`}
+      subtitle="Bagaimana kami mengumpulkan, menggunakan, menyimpan, dan melindungi data Anda."
+      intro={intro}
+      sections={sections}
+      contactIntro="Jika Anda memiliki pertanyaan atau kekhawatiran tentang Kebijakan Privasi ini, silakan hubungi kami:"
+    />
   );
 }
